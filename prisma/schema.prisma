@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// model User{
+//   id    Int  @id @default(autoincrement())
+//   role   Role?     @default(User)
+//   status Status?   @default(true)
+//   current_address String? @db.VarChar(255)
+//   username String? @unique
+//   password String? @unique
+//   fname   String?     @unique @db.VarChar(255)
+//   lname   String?     @unique @db.VarChar(255)
+//   email   String?     @db.VarChar(255)
+//   phone   Int?
+//   birthday String?
+//   Order     Order?   @relation(fields: [OrderId], references: [id])
+//   OrderId   Int?
+//   Store     Store?   @relation(fields: [StoreId], references: [id])
+//   StoreId   Int?
+// } 
+model Order {
+  id Int @id @default(autoincrement())
+  User User[]
+  Basket Basket[]
+  Purchase_order Purchase_order[]
+} 
+model Basket {
+  id Int @id @default(autoincrement())
+  Order     Order?     @relation(fields: [OrderId], references: [id])
+  OrderId    Int?
+  Product     Product?   @relation(fields: [ProductId], references: [id_product])
+  ProductId    Int?
+  number_of_products String?
+  datetime String?
+}
+model Purchase_order {
+id Int @id @default(autoincrement())
+Order     Order?     @relation(fields: [OrderId], references: [id])
+OrderId    Int?
+status Status? @default(true)
+number_of_products String?
+datetime String? 
+}
+model Store {
+  id  Int @id @default(autoincrement())
+  User User[]
+  product Product[]
+  name String? @unique
+  phone Int? @unique
+  email String? @unique
+  current_address_store String? @unique @db.VarChar(255)
+}
+model Product {
+  id_product Int @id @default(autoincrement())
+  Store     Store?     @relation(fields: [StoreId], references: [id])
+  StoreId    Int?
+  Basket   Basket[]
+  name_prodauct String? @unique
+  information_product String? 
+  number_of_product String?
+  price String?
+}
+
+enum Role {
+  User
+  Admin
+  Store
+}
+enum Status {
+  true
+  false
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  role   Role?     @default(User)
+  status Status?   @default(true)
+  current_address String? @db.VarChar(255)
+  username String? @unique
+  password String? @unique
+  fname   String?     @unique @db.VarChar(255)
+  lname   String?     @unique @db.VarChar(255)
+  phone   Int?
+  birthday String?
+  Order     Order?   @relation(fields: [OrderId], references: [id])
+  OrderId   Int?
+  Store     Store?   @relation(fields: [StoreId], references: [id])
+  StoreId   Int?
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
