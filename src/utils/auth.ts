@@ -28,38 +28,38 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.FACEBOOK_CLIENT_ID as string,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
         }),
-        // CredentialsProvider({
-        //     type: "credentials",
-        //     name: 'Credential',
-        //     credentials: {
-        //         username: { type: 'text', placeholder: 'test@test.com' },
-        //         password: { type: 'password', placeholder: 'Password' },
-        //     },
-        //     async authorize(credentials) {
+        CredentialsProvider({
+            type: "credentials",
+            name: 'Credential',
+            credentials: {
+                username: { type: 'text', placeholder: 'test@test.com' },
+                password: { type: 'password', placeholder: 'Password' },
+            },
+            async authorize(credentials) {
+                const { username, password }: any = credentials;
+                console.log(username)
+                const user = await prisma.user.findFirst({
+                    where: { username,password },
+                    select: { 
+                        id: true, 
+                        fname: true,
+                        lname:true,
+                        name: true,
+                         email: true, 
+                         password: true, 
+                         role: true, 
+                         username: true,
+                         status:true,
+                         }
+                });
+            // console.log(user)
 
-        //         const { username, password }: any = credentials;
-        //         // console.log(username)
-        //         const user = await prisma.user.findFirst({
-        //             where: { username },
-        //             select: { 
-        //                 id: true, 
-        //                 fname: true,
-        //                 lname:true,
-        //                  email: true, 
-        //                  password: true, 
-        //                  role: true, 
-        //                  username: true,
-        //                  status:true,
-        //                  }
-        //         });
-        //     console.log(user)
-
-        //         if (!user || user.status === "false") return null;
-        //         // const isPasswordValid = await compare(password, user.password);
-        //         // if (!isPasswordValid) return null;
-        //          return { ...user, id: String(user.id), };
-        //     },
-        // })
+                if (!user || user.status === "false") return null;
+                // const isPasswordValid = await compare(password, user.password);
+                // if (!isPasswordValid) return null;
+                 return { ...user, id: String(user.id), };
+            },
+        })
     ],
     secret: process.env.NEXT_PUBLIC_SECRET,
     // debug: process.env.NODE_ENV !== "production",

@@ -22,9 +22,8 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={` ${inter.className} h-screen w-full bg-gradient-to-r overflow-y-scroll`}>
+      <body className={` ${inter.className} w-full bg-gradient-to-r overflow-y-scroll`}>
         <CustomProvider>
-          <NavBar session={session}/>
         {children}
         </CustomProvider>
       </body>

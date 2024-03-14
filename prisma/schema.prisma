@@ -10,23 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User{
-//   id    Int  @id @default(autoincrement())
-//   role   Role?     @default(User)
-//   status Status?   @default(true)
-//   current_address String? @db.VarChar(255)
-//   username String? @unique
-//   password String? @unique
-//   fname   String?     @unique @db.VarChar(255)
-//   lname   String?     @unique @db.VarChar(255)
-//   email   String?     @db.VarChar(255)
-//   phone   Int?
-//   birthday String?
-//   Order     Order?   @relation(fields: [OrderId], references: [id])
-//   OrderId   Int?
-//   Store     Store?   @relation(fields: [StoreId], references: [id])
-//   StoreId   Int?
-// } 
 model Order {
   id Int @id @default(autoincrement())
   User User[]

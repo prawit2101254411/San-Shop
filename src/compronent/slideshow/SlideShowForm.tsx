@@ -13,7 +13,6 @@ const Slideshow = () => {
 		"slideshow/slide3.jpg",
 		"slideshow/slide4.jpg",
 	];
-
 	//These are custom properties for zoom effect while slide-show
 	const zoomInProperties = {
 		scale: 1,
@@ -40,9 +39,6 @@ const Slideshow = () => {
 							className="w-screen filter brightness-50"
 							src={each}
 						/>
-                        {/* <h1 className="absolute md:top-40 top-24 inset-x-1/4 text-center z-10 md:text-7xl  text-7xl bold font-semibold text-white">WelCome</h1>
-                        <p className="absolute md:top-60 top-40 inset-x-1/4 text-center z-10 md:text-2xl text-md bold text-white mt-3">Member management system To make it easier to manage human resources that has a lot of information Both convenient and fast</p>
-					     <button className=" absolute mt-20 px-3 py-3 font-semibold text-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br text-white shadow-md shadow-gray-400 hover:shadow-sm hover:mt-24 rounded-xl z-10">เกี่ยวกับเรา</button> */}
 					</div>
 				))}
 			</Zoom>
