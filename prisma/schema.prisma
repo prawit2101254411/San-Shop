@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -11,46 +12,48 @@ datasource db {
 }
 
 model Order {
-  id Int @id @default(autoincrement())
-  User User[]
-  Basket Basket[]
+  id             String           @id @default(cuid())
+  User           User[]
+  Basket         Basket[]
   Purchase_order Purchase_order[]
-} 
+}
+
 model Basket {
-  id Int @id @default(autoincrement())
-  Order     Order?     @relation(fields: [OrderId], references: [id])
-  OrderId    Int?
-  Product     Product?   @relation(fields: [ProductId], references: [id_product])
-  ProductId    Int?
+  id                 String   @id @default(cuid())
+  Order              Order?   @relation(fields: [OrderId], references: [id])
+  OrderId            String?
+  Product            Product? @relation(fields: [ProductId], references: [id_product])
+  ProductId          String?
   number_of_products String?
-  datetime String?
+  datetime           String?
 }
+
 model Purchase_order {
-id Int @id @default(autoincrement())
-Order     Order?     @relation(fields: [OrderId], references: [id])
-OrderId    Int?
-status Status? @default(true)
-number_of_products String?
-datetime String? 
+  id                 String  @id @default(cuid())
+  Order              Order?  @relation(fields: [OrderId], references: [id])
+  OrderId            String?
+  status             Status? @default(true)
+  number_of_products String?
+  datetime           String?
 }
-model Store {
-  id  Int @id @default(autoincrement())
-  User User[]
-  product Product[]
-  name String? @unique
-  phone Int? @unique
-  email String? @unique
-  current_address_store String? @unique @db.VarChar(255)
-}
+
 model Product {
-  id_product Int @id @default(autoincrement())
-  Store     Store?     @relation(fields: [StoreId], references: [id])
-  StoreId    Int?
-  Basket   Basket[]
-  name_prodauct String? @unique
-  information_product String? 
-  number_of_product String?
-  price String?
+  id_product          String        @id @default(cuid())
+  Shop                Shop?         @relation(fields: [StoreId], references: [id])
+  StoreId             String?
+  ProDuct_Type        ProDuct_Type? @relation(fields: [ProDuct_TypeId], references: [id])
+  ProDuct_TypeId      String?
+  Basket              Basket[]
+  name_prodauct       String?       @unique
+  information_product String?
+  number_of_product   String?
+  price               String?
+}
+
+model ProDuct_Type {
+  id                String    @id @default(cuid())
+  Product           Product[]
+  name_product_type String?   @unique
 }
 
 enum Role {
@@ -58,24 +61,38 @@ enum Role {
   Admin
   Store
 }
+
 enum Status {
   true
   false
 }
 
+model Shop {
+  id                    String         @id @default(cuid())
+  User                  User[]
+  product               Product[]
+  name                  String?        @unique
+  phone                 Int?           @unique
+  email                 String?        @unique
+  username              String?        @unique
+  password              String?        @unique
+  current_address_store String?        @unique @db.VarChar(255)
+  Address_Book          Address_Book[]
+}
+
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -90,27 +107,45 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Address_Book {
+  id             String  @id @default(cuid())
+  User           User?   @relation(fields: [UserId], references: [id])
+  UserId         String?
+  Shop           Shop?   @relation(fields: [ShopId], references: [id])
+  ShopId         String?
+  status         Status? @default(false)
+  home_nuber     String
+  village_number Int
+  village        Int
+  subdistrict    String
+  district       String
+  province       String
+  zip_code       Int
+}
+
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
-  role   Role?     @default(User)
-  status Status?   @default(true)
-  current_address String? @db.VarChar(255)
-  username String? @unique
-  password String? @unique
-  fname   String?     @unique @db.VarChar(255)
-  lname   String?     @unique @db.VarChar(255)
-  phone   Int?
-  birthday String?
-  Order     Order?   @relation(fields: [OrderId], references: [id])
-  OrderId   Int?
-  Store     Store?   @relation(fields: [StoreId], references: [id])
-  StoreId   Int?
+  email         String?        @unique
+  role          Role?          @default(User)
+  status        Status?        @default(true)
+  username      String?        @unique
+  password      String?        @unique
+  fname         String?        @unique @db.VarChar(255)
+  lname         String?        @unique @db.VarChar(255)
+  phone         Int?
+  birthday      String?
+  Order         Order?         @relation(fields: [OrderId], references: [id])
+  OrderId       String?
+  Shop          Shop?          @relation(fields: [StoreId], references: [id])
+  StoreId       String?
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Address_Book  Address_Book[]
+
+  @@fulltext([name])
 }
 
 model VerificationToken {

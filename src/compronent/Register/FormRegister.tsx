@@ -1,7 +1,8 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormButton } from '../FormButton'
 import { Register } from '@/utils/action'
+import { useState } from 'react'
 
 type Props = {}
 
@@ -50,11 +51,11 @@ export default function FormRegister({ }: Props) {
                     />
                 </div>
                 <div className='flex flex-col  w-[300px] mt-5'>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password1">Password</label>
                     <input
                         type="password"
-                        name='password'
-                        id='password'
+                        name='password1'
+                        id='password1'
                         className=' pl-3 border-2 h-10 rounded-md'
                     />
                 </div>

@@ -20,7 +20,7 @@ export default function Setting({ session }: Props) {
     };
     return (
         <div className=" flex items-end ">
-            {!session && <a className="border p-3 hover:shadow" href="http://localhost:3000/login">เข้าสู่ระบบ</a>}
+            {!session && <a className="border p-3 hover:shadow" href="http://localhost:3000/app/login">เข้าสู่ระบบ</a>}
             {session && <motion.nav
                 initial={false}
                 animate={isOpen ? "open" : "closed"}
@@ -68,7 +68,7 @@ export default function Setting({ session }: Props) {
                     }}
                     style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
-                    <motion.a className='font-semibold' variants={itemVariants} href='http://localhost:3000/app/profile'>Profile </motion.a>
+                    <motion.a className='font-semibold' variants={itemVariants} href='http://localhost:3000/app/user/profile'>Profile </motion.a>
                     <motion.a className='font-semibold mt-1' variants={itemVariants}>Store</motion.a>
                     <motion.a className='font-semibold mt-1' variants={itemVariants} onClick={() => signOut()}>Sign Out</motion.a>
                 </motion.ul>

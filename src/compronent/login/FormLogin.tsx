@@ -11,7 +11,7 @@ export default function LoginForm() {
   const handleSubmit = async (formData: FormData) => {
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
-    console.log(username, password)
+    // console.log(username, password)
 
     const { error, status, ok, url }: any = await signIn('credentials', {
       username: username,

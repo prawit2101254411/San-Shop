@@ -31,9 +31,10 @@ export default function NavBar({ session }: Props) {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut", }}
       className="flex flex-col sticky top-0 border p-3 z-40 w-full bg-white ">
-       <SideBar/>
+      <SideBar />
       <div className='flex justify-between border border-red-600'>
-        <a className="border flex items-center font-bold ml-5 text-3xl hover:text-blue-500 drop-shadow-lg " href="http://localhost:3000/">San Wit</a>
+        <a className="border flex items-center font-bold ml-5 text-3xl hover:text-blue-500 drop-shadow-lg " href="http://localhost:3000/">
+          San Wit</a>
         <div className='border flex items-center justify-center '>
           <ul className='hidden md:block border'>
             <li>San</li>

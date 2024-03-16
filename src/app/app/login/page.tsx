@@ -1,5 +1,5 @@
 import React from 'react'
-import FormLogin from '@/compronent/Register/FormLogin'
+import FormLogin from '@/compronent/login/FormLogin'
 import { getSession } from '@/utils/auth';
 import { redirect } from 'next/navigation';
 import NavBar from '@/compronent/nevigation/NavBar';

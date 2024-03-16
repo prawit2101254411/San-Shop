@@ -33,7 +33,7 @@ export default function TestMotion({ }: Props) {
         ข้อมูลส่วนตัว
       </motion.button>
       {isOpen == true && <motion.ul
-        className=' mt-1 bg-white flex flex-col'
+        className=' mt-1 flex flex-col'
       >
         <a className='pl-10 text-sm w-full py-1 hover:text-blue-500 text-gray-400'>ประวัติ</a>
         <a className='pl-10 mt-1 text-sm w-full py-1 hover:text-blue-500 text-gray-400'>ที่อยู่</a>
