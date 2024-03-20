@@ -8,8 +8,9 @@ const user = await prisma.user.findMany();
   return (
     <div>
         {/* การ loop ข้อมูล */}
-        {user.slice(0).map((item:any,index:number) => 
-        <h1>{item.name}</h1>)}
+        {/* {user.slice(0).map((item:any,index:number) => 
+        <h1>{item.name}</h1>)} */}
+        <a href="">san wit</a>
     </div>
   )
 }

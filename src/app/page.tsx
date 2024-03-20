@@ -4,7 +4,7 @@ import NavBar from '@/compronent/nevigation/NavBar'
 import { getSession } from '@/utils/auth'
 import FormProduct from '@/compronent/motion/product/FormProduct';
 import Statistics from '@/compronent/motion/homepage/Statistics'
-
+import { redirect } from 'next/navigation';
 
 export default async function page() {
   const session = await getSession();

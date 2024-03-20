@@ -33,7 +33,7 @@ export default function FormLoginShop({ }: Props) {
     return (
         <div
             className="max-w-md mx-auto relative overflow-hidden z-10
-                         bg-white p-20 rounded-lg border hover:shadow-2xl  
+                         bg-white p-20 rounded-lg  shadow-lg hover:shadow-2xl  
                          hover:scale-110 ease-in-out transition duration-700 delay-100
                          
                          before:w-24 before:h-24 before:absolute before:bg-teal-500 

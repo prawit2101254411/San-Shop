@@ -4,8 +4,6 @@ import { prisma } from "./prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { table } from "console";
-
 // const logonUserSchema = z.object({
 //     username: z.string().regex(/^[a-z0-9_-]{3,15}$/g, 'Invalid username'),
 //     password: z.string().min(5, 'Password should be minimum 5 characters'),
@@ -57,7 +55,7 @@ export const authOptions: NextAuthOptions = {
                 },);
             // console.log(user)
 
-                if (!user || user.status === "false") return null;
+                if (!user || user.status === "false") return null;                
                 // const isPasswordValid = await compare(password, user.password);
                 // if (!isPasswordValid) return null;
                  return { ...user, id: String(user.id), };
@@ -83,7 +81,7 @@ export const authOptions: NextAuthOptions = {
                         name: true,
                     }
                 })
-                console.log(shop)
+                // console.log(shop)
                 if (!shop) return null;
                 return { ...shop, id: String(shop?.id), };
               },
@@ -91,13 +89,9 @@ export const authOptions: NextAuthOptions = {
     ],
     secret: process.env.NEXT_PUBLIC_SECRET,
     // debug: process.env.NODE_ENV !== "production",
-    // pages: {
-    //     signIn: '/app/shop',
-    //     signOut: '/',
-    //     error: '/error',
-    //     verifyRequest: '/signin',
-    //     newUser: '/'
-    // },
+    pages: {
+        signOut: '/',
+    },
     adapter: PrismaAdapter(prisma),
     session: {
         strategy: 'jwt',
@@ -111,7 +105,7 @@ export const authOptions: NextAuthOptions = {
                 // @ts-expect-error
                 id: token.sub!,
                 // @ts-expect-error
-                role: token.user.level!,
+                role: token.user.role!,
                 // @ts-expect-error
                 username: token.user.username!,
                 // @ts-expect-error
@@ -120,7 +114,7 @@ export const authOptions: NextAuthOptions = {
                 image: token.user.image!
 
             };
-            // console.log(token)
+            // console.log(session)
             return session
         },
         jwt({ token, user }) {

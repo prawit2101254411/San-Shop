@@ -1,11 +1,24 @@
 "use client"
 import { signIn } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useRouter,redirect } from "next/navigation";
+import { useState,useEffect } from "react";
 import { FormButton } from "../FormButton";
 
-export default function LoginForm() {
+type Props = {
+  session : any,
+}
 
+export default function LoginForm({session}:Props) {
+  // console.log(session)
+  const router = useRouter();
+
+  if(session?.user?.role == 'Admin'){
+    redirect('/app/admin/edit-table-user')
+  }
+  if(session?.user?.role == 'User'){
+    redirect('/app/user/profile')
+  }
+ 
   const [errorMessage, setError] = useState<string | null>(null)
 
   const handleSubmit = async (formData: FormData) => {
@@ -13,11 +26,10 @@ export default function LoginForm() {
     const password = formData.get("password") as string;
     // console.log(username, password)
 
-    const { error, status, ok, url }: any = await signIn('credentials', {
+    const { error, status, ok, url, user }: any = await signIn('credentials', {
       username: username,
       password: password,
       redirect: false,
-      callbackUrl: '/',
     });
     if (error) {
       setError("Username or Password is incorrect")
@@ -70,7 +82,7 @@ export default function LoginForm() {
         </div>
         <hr className=" w-96 mt-5" />
         <div className="flex mt-3">
-          <button onClick={() => signIn('google', { callbackUrl: "/" })}
+          <button onClick={() => signIn('google')}
             className="flex items-center justify-center w-[200px] p-3 shadow-lg rounded-lg mt-3
           transition duration-500 hover:scale-125 delay-100 hover:shadow-xl
           ">

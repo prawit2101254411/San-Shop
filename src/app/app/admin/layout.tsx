@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import SildeBarShopForm from '@/compronent/form-shop/SildeBarForm'
 import { getSession } from '@/utils/auth'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -12,6 +13,9 @@ export default async function RootLayout({
     children: React.ReactNode
 }) {
     const session = await getSession();
+    if(session?.user.role != 'Admin'){
+        redirect('/app/notfound')
+    }
     return (
         <div className='flex w-4/5 bg-gray-100 '>
             <div className='flex flex-col border h-screen w-full overflow-auto'>
