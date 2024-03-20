@@ -13,11 +13,8 @@ export default async function RootLayout({
 }) {
     const session = await getSession();
     return (
-        <div className="flex w-2/3 border ">
-            <div className=' flex border border-red-500 w-[300px]'>
-            <SildeBarShopForm session={session}/>
-            </div>
-            <div className='flex w-full h-screen border border-green-500 overflow-auto'>
+        <div className='flex w-4/5 bg-gray-100 '>
+            <div className='flex flex-col border h-screen w-full overflow-auto'>
             {children}
             </div>
         </div>

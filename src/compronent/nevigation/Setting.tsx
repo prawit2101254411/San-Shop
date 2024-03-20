@@ -20,7 +20,7 @@ export default function Setting({ session }: Props) {
     };
     return (
         <div className=" flex items-end ">
-            {!session && <a className="border p-3 hover:shadow" href="http://localhost:3000/app/login">เข้าสู่ระบบ</a>}
+            {!session && <a className="border p-3 hover:shadow" href="http://localhost:3000/app/login" target='_blank'>เข้าสู่ระบบ</a>}
             {session && <motion.nav
                 initial={false}
                 animate={isOpen ? "open" : "closed"}
@@ -29,7 +29,7 @@ export default function Setting({ session }: Props) {
                 <motion.button
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setIsOpen(!isOpen)}
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false"
+                    className="flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false"
                 >
                     <motion.div
                         variants={{
@@ -45,7 +45,7 @@ export default function Setting({ session }: Props) {
                     </motion.div>
                 </motion.button>
                 <motion.ul
-                    className=' fixed flex flex-col bg-white w-full pl-5 pt-3 mt-1 border rounded-lg py-2'
+                    className=' fixed flex flex-col bg-white  px-5 pt-3 mt-1 border rounded-lg py-2'
                     variants={{
                         open: {
                             clipPath: "inset(0% 0% 0% 0% round 10px)",

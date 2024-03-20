@@ -9,7 +9,7 @@ import Statistics from '@/compronent/motion/homepage/Statistics'
 export default async function page() {
   const session = await getSession();
   return (
-    <div>
+    <div className="flex flex-col w-2/3 border ">
       <NavBar session={session} />
       <Slideshow />
       <div className=' flex items-center justify-center border border-green-500 h-[200px]'>

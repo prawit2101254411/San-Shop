@@ -14,7 +14,7 @@ export default async function RootLayout({
 }) {
     const session = await getSession();
     return (
-        <div className='bg-gray-100 w-full h-full'>
+        <div className="flex flex-col w-2/3 border ">
             <NavBar session={session} />
             <div className=' flex justify-center w-full mt-5 '>
                 <SildebarForm session={session} />

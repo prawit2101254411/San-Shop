@@ -20,13 +20,13 @@ const Slideshow = () => {
 		transitionDuration: 300,
 		infinite: true,
 		prevArrow: (
-			<div className="ml-10  md:top-72">
-				<ArrowLeftIcon className="h-8 w-8 text-white cursor-pointer" />
+			<div className="ml-10  md:top-1/2 transition  rounded-full hover:scale-125">
+				<ArrowLeftIcon className="h-8 w-8 text-gray-400 cursor-pointer" />
 			</div>
 		),
 		nextArrow: (
-				<div className="mr-10  md:top-72">
-				   <ArrowRightIcon className="h-8 w-8 text-white cursor-pointer" />
+				<div className="mr-10  md:top-1/2 transition rounded-full hover:scale-125">
+				   <ArrowRightIcon className="h-8 w-8 text-gray-400 cursor-pointer" />
 			    </div>
 		),
 	};

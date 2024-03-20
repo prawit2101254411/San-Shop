@@ -59,7 +59,7 @@ model ProDuct_Type {
 enum Role {
   User
   Admin
-  Store
+  Shop
 }
 
 enum Status {

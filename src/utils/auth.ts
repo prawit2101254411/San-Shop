@@ -93,7 +93,7 @@ export const authOptions: NextAuthOptions = {
     // debug: process.env.NODE_ENV !== "production",
     // pages: {
     //     signIn: '/app/shop',
-    //     signOut: '/login',
+    //     signOut: '/',
     //     error: '/error',
     //     verifyRequest: '/signin',
     //     newUser: '/'

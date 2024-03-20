@@ -12,7 +12,7 @@ export default async function page({ }: Props) {
   //   redirect("/app/profile")
   // }
   return (
-    <div>
+    <div className='flex justify-center items-center border w-full h-screen'>
       <FormLogin />
     </div>
   )
