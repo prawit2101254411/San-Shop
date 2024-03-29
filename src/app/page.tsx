@@ -18,7 +18,6 @@ export default async function page() {
       <div className=' w-full h-full bg-gray-200 p-5 grid grid-cols-2 xl:grid-cols-6'>
         <FormProduct />
       </div>
-      <h1>san</h1>
     </div>
   )
 }
