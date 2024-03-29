@@ -22,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={` ${inter.className} flex justify-center w-full bg-gray-100 bg-gradient-to-r overflow-y-scroll`}>
+      <body className={` ${inter.className} flex justify-center w-full text-black bg-gray-100 bg-gradient-to-r overflow-y-scroll`}>
         <CustomProvider>
         {children}
         </CustomProvider>

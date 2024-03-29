@@ -52,7 +52,7 @@ export default function LoginForm({session}:Props) {
         <h1 className=" text-5xl ">เข้าสู่ระบบ</h1>
         <div className="md:w-[400px] w-[300px] mt-10 ">
           <label htmlFor="username">อีเมล</label>
-          <input className="mt-2 h-12 w-full rounded-xl shadow px-4 text-sm outline-none"
+          <input className="mt-2 h-12 w-full bg-white rounded-xl shadow px-4 text-sm outline-none"
             type="text"
             id="username"
             name="username"
@@ -62,7 +62,7 @@ export default function LoginForm({session}:Props) {
         </div>
         <div className="md:w-[400px] w-[300px] mt-5 ">
           <label htmlFor="password">รหัสผ่าน</label>
-          <input className="mt-2 h-12 w-full rounded-xl shadow px-4 text-sm outline-none"
+          <input className="mt-2 h-12 w-full bg-white rounded-xl shadow px-4 text-sm outline-none"
             type="password"
             id="password"
             name="password"
