@@ -18,7 +18,7 @@ export default async function RootLayout({
         redirect('/app/login')
     }
     return (
-        <div className="flex flex-col w-2/3 border ">
+        <div className="flex flex-col w-4/5 border ">
             <NavBar session={session} />
             <div className=' flex justify-center w-full mt-5 '>
                 <SildebarForm session={session} />

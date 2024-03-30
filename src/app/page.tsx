@@ -9,7 +9,7 @@ import { redirect } from 'next/navigation';
 export default async function page() {
   const session = await getSession();
   return (
-    <div className="flex flex-col w-2/3 border ">
+    <div className="flex flex-col w-full border ">
       <NavBar session={session} />
       <Slideshow />
       <div className=' flex items-center justify-center border border-green-500 h-[200px]'>

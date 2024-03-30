@@ -32,7 +32,7 @@ export default function NavBar({ session }: Props) {
       transition={{ duration: 0.35, ease: "easeInOut", }}
       className="flex flex-col sticky top-0 border p-3 z-40 w-full bg-white ">
       <SideBar />
-      <div className='flex justify-between border border-red-600'>
+      <div className='flex justify-between '>
         <a className="border flex items-center font-bold ml-5 text-3xl hover:text-blue-500 drop-shadow-lg " href="http://localhost:3000/">
           San Wit</a>
         <div className='border flex items-center justify-center '>
@@ -40,7 +40,6 @@ export default function NavBar({ session }: Props) {
             <li>San</li>
           </ul>
         </div>
-
         {/* ควบคุม */}
         <Setting session={session} />
       </div>
